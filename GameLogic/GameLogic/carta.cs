@@ -26,8 +26,14 @@ namespace GameLogic
             this.poderMinado = poderMinado;
         }
 
+        //imprimir info general de la carta()
+        public void info()
+        {
+            Console.WriteLine(this.id + " " + this.nombre + " " + this.tipo + " " + this.ataque + " " + " " + this.defensa + " " + this.poderMinado);
+        }
+
         //get del id
-        public int setId()
+        public int getId()
         {
             return this.id;
         }

@@ -98,13 +98,16 @@ namespace GameLogic
         }  
 
         //imprime el deck del jugador
-        public void imprimirDeck(List<carta> cartasTotales)
+        public void imprimirDeck()
         {
-            Console.WriteLine("Impresión del deck");
-
-            foreach(carta card in cartasTotales)
+            Console.WriteLine("\nImpresión del deck de "+id);
+            int i = 0;
+            foreach(carta card in this.deck)
             {
-                Console.WriteLine(card+"\n");
+                Console.WriteLine(i);
+                card.info();
+                Console.WriteLine("\n");
+                i = i + 1;
             }
 
         }
@@ -117,13 +120,25 @@ namespace GameLogic
         }
 
         //arma una jugada de ronda con sus cartas, y retorna una lista con las cartas jugadas en esa ronda
-        public virtual List<carta> armarJugada()
+        public virtual List<carta> armarJugada(List<carta> cartasTotales)
         {
             List<carta> jugada = new List<carta>();
             return jugada;
         }
 
-
+        //retorna el deck con la carta eliminada
+        public List<carta> retirarCarta(int id, List<carta> cartasTotales)
+        {
+            foreach(carta card in cartasTotales)
+            {
+                if(card.getId() == id)
+                {
+                    //elimino la carta del deck
+                    cartasTotales.Remove(card);
+                }
+            }
+            return cartasTotales;
+        }
 
     }
 }

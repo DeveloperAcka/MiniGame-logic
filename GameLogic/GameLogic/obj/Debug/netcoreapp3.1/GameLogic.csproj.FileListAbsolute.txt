@@ -1,0 +1,14 @@
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csproj.AssemblyReference.cache
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.AssemblyInfoInputs.cache
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.AssemblyInfo.cs
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.csproj.CoreCompileInputs.cache
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.exe
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.deps.json
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.runtimeconfig.json
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.runtimeconfig.dev.json
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.dll
+C:\MiniGame-logic\GameLogic\GameLogic\bin\Debug\netcoreapp3.1\GameLogic.pdb
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.dll
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.pdb
+C:\MiniGame-logic\GameLogic\GameLogic\obj\Debug\netcoreapp3.1\GameLogic.genruntimeconfig.cache
