@@ -116,8 +116,8 @@ namespace GameLogic
                 }
 
 
-                Console.WriteLine(contadorPlayer1);
-                Console.WriteLine(contadorPlayer2);
+                Console.WriteLine("Puntos de usuario: "+contadorPlayer1);
+                Console.WriteLine("Puntos de máquina: "+contadorPlayer2);
                 Console.ReadLine();
             }
 
@@ -185,6 +185,25 @@ namespace GameLogic
             List<carta> lista1 = player1.getJugada();
             List<carta> lista2 = player2.getJugada();
 
+
+            //IMPRESIÓN DE LAS JUGADAS DE CADA UNO
+            //***********************************************************************
+            Console.Clear();
+            Console.WriteLine("Comparación de jugadas: ");
+            Console.WriteLine("\n\nJugada de " + player1.getId());
+            foreach(carta card in lista1)
+            {
+                card.info();
+            }
+            Console.WriteLine("\n\nJugada de " + player2.getId());
+            foreach (carta card in lista2)
+            {
+                card.info();
+            }
+            //*************************************************************************
+
+            
+
             carta c1 = lista1[0];
             carta c2 = lista2[0];
 
@@ -239,7 +258,6 @@ namespace GameLogic
                     }
                 }
 
-
             }
 
             //aplicar lista 2
@@ -293,8 +311,23 @@ namespace GameLogic
 
             }
 
+            //*impresión de los stats finales
+            Console.WriteLine("\n\nStats final de " + player1.getId());
+            c1.info();
+
+            Console.WriteLine("\n\nStats final de " + player2.getId());
+            c2.info();
+
+            Console.WriteLine("\n\nLa opción de juego es");
+            Console.WriteLine(opc);
+
+            Console.WriteLine("Pulse una tecla para continuar...");
+            Console.ReadLine();
+            //***************************************************************************
+
+
             //ahora comparo las cartas
-            switch(opc)
+            switch (opc)
             {
                 case 1:
                     if(c1.getAtaque()>c2.getAtaque())

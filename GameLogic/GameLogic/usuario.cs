@@ -23,7 +23,7 @@ namespace GameLogic
             //asigna el deck manualmente -- al menos deben existir 5 guerreros
             List<carta> deck = new List<carta>();
 
-            deck.Add(cartasTotales[0]);
+            deck.Add(cartasTotales[4]);
             deck.Add(cartasTotales[1]);
             deck.Add(cartasTotales[2]);
             deck.Add(cartasTotales[9]);
