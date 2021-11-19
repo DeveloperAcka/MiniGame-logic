@@ -67,50 +67,76 @@ namespace GameLogic
             var rnd2 = new Random();
             var randomNumber3 = Enumerable.Range(1, 4).OrderBy(x => rnd2.Next()).Take(1).ToList();
             criterio = randomNumber3[0];
+
+            switch (criterio)
+            {
+                case 1:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con mayor ataque: ");
+                    break;
+
+                case 2:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con menor ataque: ");
+                    break;
+
+                case 3:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con mayor defensa: ");
+                    break;
+
+                case 4:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con menor defensa: ");
+                    break;
+
+            }
+
+            Console.ReadLine();
+
             return criterio;
         }
 
         //arma una jugada de ronda con sus cartas, y retorna una lista con las cartas jugadas en esa ronda, devuelvo una lista con las cartas para enfrentar el duelo
-        public override List<carta> armarJugada(List<carta> cartasTotales)
+        public override void armarJugada()
         {
             List<carta> jugada = new List<carta>();
-
-
             //selecciono el guerrero randomicamente
             int movi = 0;
             bool selec = false;
             while (selec == false)
             {
                 var rnd4 = new Random();
-                var randomNumber4 = Enumerable.Range(0, cartasTotales.Count).OrderBy(x => rnd4.Next()).Take(1).ToList();
+                var randomNumber4 = Enumerable.Range(0, deck.Count).OrderBy(x => rnd4.Next()).Take(1).ToList();
                 movi = randomNumber4[0];
 
-                if (cartasTotales[movi] != null && cartasTotales[movi].getTipo() == "guerrero")
+                if (deck[movi] != null && deck[movi].getTipo() == "guerrero")
                 {
                     // agrego la carta a la lista
-                    jugada.Add(cartasTotales[movi]);
+                    jugada.Add(deck[movi]);
                     selec = true;
                 }
             }
-
-            
-
 
             //agregación de carta de estrategia
             bool mien = false;
             while (mien == false)
             {
                 Random x = new Random();
-                int resp = x.Next(cartasTotales.Count);
-                if (cartasTotales[resp].getTipo() != "guerrero") // si el randomico genera diferente de guerrero
+                int resp = x.Next(deck.Count);
+                if (deck[resp].getTipo() != "guerrero") // si el randomico genera diferente de guerrero
                 {
                     //agregarla a la lista
-                    jugada.Add(cartasTotales[resp]);
+                    jugada.Add(deck[resp]);
                     mien = true;
                 }
             }
 
-            return jugada;
+            this.jugada = jugada;
+
+            //borrar las cartas del deck
+            int i = 0;
+            foreach(carta card in jugada)
+            {
+                deck.Remove(card);
+            }
+
         }
 
     }

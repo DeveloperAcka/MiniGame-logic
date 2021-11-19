@@ -25,14 +25,14 @@ namespace GameLogic
 
             deck.Add(cartasTotales[0]);
             deck.Add(cartasTotales[1]);
-            deck.Add(cartasTotales[5]);
+            deck.Add(cartasTotales[2]);
             deck.Add(cartasTotales[9]);
             deck.Add(cartasTotales[13]);
             deck.Add(cartasTotales[17]);
             deck.Add(cartasTotales[18]);
             deck.Add(cartasTotales[20]);
             deck.Add(cartasTotales[22]);
-            deck.Add(cartasTotales[23]);
+            deck.Add(cartasTotales[29]);
             return deck;
         }
 
@@ -48,11 +48,35 @@ namespace GameLogic
             Console.WriteLine("3. Gana la carta con mayor defensa");
             Console.WriteLine("4. Gana la carta con menor defensa");
             criterio = Convert.ToInt32(Console.ReadLine());
+
+            switch (criterio)
+            {
+                case 1:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con mayor ataque: ");
+                    break;
+
+                case 2:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con menor ataque: ");
+                    break;
+
+                case 3:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con mayor defensa: ");
+                    break;
+
+                case 4:
+                    Console.WriteLine(this.id + " ha elegido que Gana la carta con menor defensa: ");
+                    break;
+
+            }
+
+            Console.ReadLine();
+
+
             return criterio;
         }
 
         //arma una jugada de ronda con sus cartas, y retorna una lista con las cartas jugadas en esa ronda
-        public override List<carta> armarJugada(List<carta> cartasTotales)
+        public override void armarJugada()
         {
             List<carta> jugada = new List<carta>();
 
@@ -64,11 +88,11 @@ namespace GameLogic
                 Console.WriteLine("Escoja una carta de tipo guerrero, Ingrese el número");
                 imprimirDeck();
                 sel = Convert.ToInt32(Console.ReadLine());
-                if (cartasTotales[sel] != null && cartasTotales[sel].getTipo() == "guerrero")
+                if (deck[sel] != null && deck[sel].getTipo() == "guerrero")
                 {
                     selec = true;
                     //agrego a la lista de salida, la carta guerrero escogida
-                    jugada.Add(cartasTotales[sel]);
+                    jugada.Add(deck[sel]);
                 }
                     
                 else
@@ -79,27 +103,32 @@ namespace GameLogic
             Console.WriteLine("\n\nDesea agregar una carga de estrategia? si/no");
             String resp = Console.ReadLine();
 
-            while(resp == "si" && cartasTotales.Count>0)
+            while(resp == "si" && deck.Count>0)
             {
-                Console.WriteLine("\n\nEscoja una carta de tipo guerrero, Ingrese el número");
+                Console.WriteLine("\n\nEscoja una carta de estrategia, Ingrese el número");
                 imprimirDeck();
                 sel = Convert.ToInt32(Console.ReadLine());
-                if (cartasTotales[sel] != null && cartasTotales[sel].getTipo() != "guerrero")
+                if (deck[sel] != null && deck[sel].getTipo() != "guerrero")
                 {
                     selec = true;
                     //agrego a la lista de salida la carta escogida
-                    jugada.Add(cartasTotales[sel]);
+                    jugada.Add(deck[sel]);
+                    Console.WriteLine("\n\nDesea agregar otra carta? si/no");
+                    resp = Console.ReadLine();
                 }
                 else
                     Console.WriteLine("Escoja un numero de carta valido, asegúrese que no sea un guerrero");
 
-                Console.WriteLine("\n\nDesea agregar otra carta? si/no");
-                resp = Console.ReadLine();
-
-
             }
 
-            return jugada;
+            this.jugada = jugada;
+
+            //borrar las cartas del deck
+            int i = 0;
+            foreach (carta card in jugada)
+            {
+                deck.Remove(card);
+            }
         }
     }
 }

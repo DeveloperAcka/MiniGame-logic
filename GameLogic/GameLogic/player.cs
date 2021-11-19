@@ -10,6 +10,7 @@ namespace GameLogic
         protected bool primero;
         protected List<carta> cartasTotales= new List<carta>();
         protected List<carta> deck = new List<carta>();
+        protected List<carta> jugada = new List<carta>();
 
         //constructor
         public player()
@@ -22,6 +23,7 @@ namespace GameLogic
         public List<carta> importarCartas()
         {
             //importa la cartas manualmente
+            carta a0 = new carta(10, "Bruja verde", "magia", 450, 580, 1000);
             carta a1 = new carta(1, "Bruja blanca", "guerrero", 800, 500, 1000);
             carta a2 = new carta(2, "Bruja azul", "magia", 700, 400, 3000);
             carta a3 = new carta(3, "Bruja roja", "equipo", 200, 500, 5000);
@@ -31,7 +33,7 @@ namespace GameLogic
             carta a7 = new carta(7, "Bruja rosada", "equipo", 150, 4800, 1000);
             carta a8 = new carta(8, "Bruja gris", "diplomacia", 300, 500, 1000);
             carta a9 = new carta(9, "Bruja escarlata", "guerrero", 850, 510, 1000);
-            carta a0 = new carta(10, "Bruja verde", "magia", 450, 580, 1000);
+            carta b0 = new carta(20, "Duende verde", "diplomacia", 478, 525, 1000);
             carta b1 = new carta(11, "Duende blanco", "equipo", 125, 8000, 1000);
             carta b2 = new carta(12, "Duende azul", "diplomacia", 200, 5000, 1000);
             carta b3 = new carta(13, "Duende rojo", "guerrero", 1250, 50, 1000);
@@ -41,7 +43,7 @@ namespace GameLogic
             carta b7 = new carta(17, "Duende rosado", "guerrero", 777, 555, 1000);
             carta b8 = new carta(18, "Duende gris", "magia", 888, 111, 1000);
             carta b9 = new carta(19, "Duende escarlata", "equipo", 800, 147, 1000);
-            carta b0 = new carta(20, "Duende verde", "diplomacia", 478, 525, 1000);
+            carta c0 = new carta(30, "Dragon verde", "magia", 7800, 7500, 1000);
             carta c1 = new carta(21, "Dragon blanco", "guerrero", 278, 5000, 1000);
             carta c2 = new carta(22, "Dragon azul", "magia", 8000, 50, 1000);
             carta c3 = new carta(23, "Dragon rojo", "equipo", 222, 502, 1000);
@@ -51,7 +53,7 @@ namespace GameLogic
             carta c7 = new carta(27, "Dragon rosado", "equipo", 4800, 4500, 1000);
             carta c8 = new carta(28, "Dragon gris", "diplomacia", 5800, 5500, 1000);
             carta c9 = new carta(29, "Dragon escarlata", "guerrero", 6800, 6500, 1000);
-            carta c0 = new carta(30, "Dragon verde", "magia", 7800, 7500, 1000);
+            
 
             //crear el array con las cartas y agregarlas
             List<carta> cartasTotales = new List<carta>();
@@ -100,13 +102,13 @@ namespace GameLogic
         //imprime el deck del jugador
         public void imprimirDeck()
         {
-            Console.WriteLine("\nImpresión del deck de "+id);
+            Console.WriteLine("\n\nImpresión del deck de "+id);
             int i = 0;
             foreach(carta card in this.deck)
             {
                 Console.WriteLine(i);
                 card.info();
-                Console.WriteLine("\n");
+               
                 i = i + 1;
             }
 
@@ -120,10 +122,9 @@ namespace GameLogic
         }
 
         //arma una jugada de ronda con sus cartas, y retorna una lista con las cartas jugadas en esa ronda
-        public virtual List<carta> armarJugada(List<carta> cartasTotales)
+        public virtual void armarJugada()
         {
             List<carta> jugada = new List<carta>();
-            return jugada;
         }
 
         //retorna el deck con la carta eliminada
@@ -140,5 +141,34 @@ namespace GameLogic
             return cartasTotales;
         }
 
+        //cambia el valor de turno, que muestra si va primero o no
+        public void setPrimero(bool change)
+        {
+            this.primero = change;
+        }
+
+        //get id
+        public String getId()
+        {
+            return this.id;
+        }
+
+        //get primero
+        public bool getPrimero()
+        {
+            return this.primero;
+        }
+
+        //get deck
+        public List<carta> getDeck()
+        {
+            return this.deck;
+        }
+
+        //get jugada
+        public List<carta> getJugada()
+        {
+            return this.jugada;
+        }
     }
 }

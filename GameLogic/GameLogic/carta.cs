@@ -29,7 +29,7 @@ namespace GameLogic
         //imprimir info general de la carta()
         public void info()
         {
-            Console.WriteLine(this.id + " " + this.nombre + " " + this.tipo + " " + this.ataque + " " + " " + this.defensa + " " + this.poderMinado);
+            Console.WriteLine(this.nombre + " " + this.tipo + " " + this.ataque + " " + " " + this.defensa + " " + this.poderMinado);
         }
 
         //get del id
@@ -66,6 +66,18 @@ namespace GameLogic
         public int getPoderMinado()
         {
             return this.poderMinado;
+        }
+
+        //set ataque
+        public void setAtaque(int ataque)
+        {
+            this.ataque = ataque;
+        }
+
+        //set defensa
+        public void setDefensa(int defensa)
+        {
+            this.defensa = defensa;
         }
 
     }
