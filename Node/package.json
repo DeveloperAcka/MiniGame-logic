@@ -1,0 +1,19 @@
+{
+  "name": "gamelogicnode",
+  "version": "1.0.0",
+  "description": "Logica del juego traducida en Nodejs",
+  "main": "partida.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeveloperAcka/MiniGame-logic.git"
+  },
+  "author": "Alejandra Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeveloperAcka/MiniGame-logic/issues"
+  },
+  "homepage": "https://github.com/DeveloperAcka/MiniGame-logic#readme"
+}
