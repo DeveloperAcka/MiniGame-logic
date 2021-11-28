@@ -1,12 +1,15 @@
 const carta = require("./carta.js");
+const readline = require('readline-sync');
 
 class player
 {      
     
     constructor()
     {    
+        this.id;
+        this.primero;
+        this.jugada;
         let cartasTotales = this.importarCartas();
-        
         this.deck = this.crearDeck(cartasTotales);
     }
 
@@ -95,12 +98,10 @@ class player
     {
         console.log("\n\nImpresión del deck de "+this.id);
         let i = 0;
-        // console.log(this.deck);
 
         this.deck.forEach(card => {
             console.log(i);
             card.info();
-
             i++;
         });
 

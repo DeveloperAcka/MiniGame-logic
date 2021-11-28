@@ -1,6 +1,8 @@
 const usuario = require("./usuario.js");
 const ia = require("./ia.js");
 const player = require("./player.js");
+const readline = require('readline-sync');
+
 
 class partida
 {
@@ -16,9 +18,8 @@ class partida
         this.winner; //ganador de la partida
         this.looser; //perdedor de la partida
 
-        console.log("Inicio de partida");
-        console.clear();
-        console.log("Decks de los jugadores: \n\n");
+        console.log("Inicio de partida \n");
+        console.log("Decks de los jugadores: \n");
         this.player1.imprimirDeck();
         this.player2.imprimirDeck();
         this.jugar();
@@ -28,8 +29,7 @@ class partida
     jugar() 
     { 
         // Asignar los turnos
-        console.clear();
-        console.log("Asignando turnos mediante moneda...");
+        console.log("\nAsignando turnos mediante moneda...");
         this.asignarTurnos();
 
         // Inician las rondas
@@ -37,28 +37,23 @@ class partida
         while (this.contadorPlayer1 < 3 && this.contadorPlayer2 < 3)
         {
             ronda = ronda + 1;
-            console.clear();
-            console.log("Ronda N: " + ronda);
-            console.log("Presione una tecla para continuar...");
-            if(player1.getPrimero() == true && ronda%2==1) // propuesta del usuario y respuesta de la máquina
+            console.log("\nRonda N: " + ronda);
+            if(this.player1.getPrimero() == true && ronda%2==1) // propuesta del usuario y respuesta de la máquina
             {
                 // Propuesta usuario
-                Console.Clear();
                 console.log("Turno del usuario");
-                console.log("Presione una tecla para continuar...");
                 let opc;
-                opc = player1.seleccionarCriterio();
-                player1.armarJugada();
+                opc = this.player1.seleccionarCriterio();
+                this.player1.armarJugada();
 
                 // Respuesta de la máquina
                 console.log("Turno de la máquina");
-                console.log("Presione una tecla para continuar...");
                 this.player2.armarJugada();
 
                 // Hallar ganador
-                hallarGanador(opc);
+                this.hallarGanador(opc);
             }
-            else if (player1.getPrimero() == true && ronda % 2 == 0)  // propuesta de la máquina y respuesta del usuario
+            else if (this.player1.getPrimero() == true && ronda % 2 == 0)  // propuesta de la máquina y respuesta del usuario
             {
                 // Propuesta de la máquina
                 let opc;
@@ -66,10 +61,10 @@ class partida
                 this.player2.armarJugada();
 
                 // Respuesta del usuario
-                player1.armarJugada();
+                this.player1.armarJugada();
 
                 // Hallar ganador
-                hallarGanador(opc);
+                this.hallarGanador(opc);
             }
             else if (this.player2.getPrimero() == true && ronda % 2 == 1)  // propuesta de la máquina y respuesta del usuario
             {
@@ -79,56 +74,45 @@ class partida
                 this.player2.armarJugada();
 
                 // Respuesta del usuario
-                player1.armarJugada();
+                this.player1.armarJugada();
 
                 // Hallar ganador
-                hallarGanador(opc);
+                this.hallarGanador(opc);
             }
             if (this.player2.getPrimero() == true && ronda % 2 == 0) // propuesta del usuario y respuesta de la máquina
             {
                 // Propuesta usuario
-                Console.Clear();
                 console.log("Turno del usuario");
-                console.log("Presione una tecla para continuar...");
                 let opc;
-                opc = player1.seleccionarCriterio();
-                player1.armarJugada();
+                opc = this.player1.seleccionarCriterio();
+                this.player1.armarJugada();
 
                 // Respuesta de la máquina
                 console.log("Turno de la máquina");
-                console.log("Presione una tecla para continuar...");
                 this.player2.armarJugada();
 
                 // Hallar ganador
-                hallarGanador(opc);
+                this.hallarGanador(opc);
             }
 
 
             console.log("Puntos de usuario: "+this.contadorPlayer1);
-            console.log("Puntos de máquina: "+this.contadorthis.Player2);
-            Console.ReadLine();
+            console.log("Puntos de máquina: "+this.contadorPlayer2);
+            // Console.ReadLine();
         }
 
-        Console.Clear();
-
         // Imprimir ganador
-        if (this.contadorPlayer1 > this.contadorthis.Player2)
+        if (this.contadorPlayer1 > this.contadorPlayer2)
         {
             console.log("HA GANADO LA PARTIDA: " + player1.getId());
-            winner = player1.getId();
-            looser = this.player2.getId();
-            console.log("pulse una tecla para continuar...");
-            Console.ReadLine();
-            Console.Clear();
+            this.winner = this.player1.getId();
+            this.looser = this.player2.getId();
         }
         else
         {
             console.log("HA GANADO LA PARTIDA" + this.player2.getId());
-            looser = player1.getId();
-            winner = this.player2.getId();
-            console.log("pulse una tecla para continuar...");
-            Console.ReadLine();
-            Console.Clear();
+            this.looser = this.player1.getId();
+            this.winner = this.player2.getId();
         }
 
         //cerrar el juego
@@ -175,9 +159,8 @@ class partida
 
         //IMPRESIÓN DE LAS JUGADAS DE CADA UNO
         //***********************************************************************
-        Console.Clear();
-        console.log("Comparación de jugadas: ");
-        console.log("\n\nJugada de " + player1.getId());
+        console.log("\nComparación de jugadas: ");
+        console.log("\n\nJugada de " + this.player1.getId());
         lista1.forEach(card => {
             card.info();
         });
@@ -192,8 +175,8 @@ class partida
         let c1 = lista1[0];
         let c2 = lista2[0];
 
-        lista1.remove(c1);
-        lista2.remove(c2);
+        lista1.splice(0, 1);
+        lista2.splice(0, 1);
 
         // aplicar lista 1
         lista1.forEach(card => {
@@ -296,16 +279,14 @@ class partida
 
 
         //*impresión de los stats finales
-        console.log("\n\nStats final de " + player1.getId());
+        console.log("\n\nStats final de " + this.player1.getId());
         c1.info();
 
         console.log("\n\nStats final de " + this.player2.getId());
         c2.info();
 
-        console.log("\n\nLa opción de juego es");
-        opc = prompt;
+        console.log("\n\nLa opción de juego es " + opc);
 
-        console.log("Pulse una tecla para continuar...");
         // Console.ReadLine();
         //***************************************************************************
 
@@ -316,61 +297,64 @@ class partida
             case 1:
                 if(c1.getAtaque()>c2.getAtaque())
                 {
-                    console.log("Ha ganado " + player1.getId());
+                    console.log("Ha ganado " + this.player1.getId());
                     this.contadorPlayer1 = this.contadorPlayer1 + 1;
                 }
                 else
                 {
                     console.log("Ha ganado " + this.player2.getId());
-                    this.contadorthis.Player2 = this.contadorthis.Player2+ 1;
+                    this.contadorPlayer2 = this.contadorPlayer2+ 1;
                 }
                 break;
 
             case 2:
                 if (c1.getAtaque() < c2.getAtaque())
                 {
-                    console.log("Ha ganado " + player1.getId());
+                    console.log("Ha ganado " + this.player1.getId());
                     this.contadorPlayer1 = this.contadorPlayer1 + 1;
                 }
                 else
                 {
                     console.log("Ha ganado " + this.player2.getId());
-                    this.contadorthis.Player2 = this.contadorthis.Player2 + 1;
+                    this.contadorPlayer2 = this.contadorPlayer2 + 1;
                 }
                 break;
 
             case 3:
                 if (c1.getDefensa() > c2.getDefensa())
                 {
-                    console.log("Ha ganado " + player1.getId());
+                    console.log("Ha ganado " + this.player1.getId());
                     this.contadorPlayer1 = this.contadorPlayer1 + 1;
                 }
                 else
                 {
                     console.log("Ha ganado " + this.player2.getId());
-                    this.contadorthis.Player2 = this.contadorthis.Player2 + 1;
+                    this.contadorPlayer2 = this.contadorPlayer2 + 1;
                 }
                 break;
 
             case 4:
                 if (c1.getDefensa() < c2.getDefensa())
                 {
-                    console.log("Ha ganado " + player1.getId());
+                    console.log("Ha ganado " + this.player1.getId());
                     this.contadorPlayer1 = this.contadorPlayer1 + 1;
                 }
                 else
                 {
                     console.log("Ha ganado " + this.player2.getId());
-                    this.contadorthis.Player2 = this.contadorthis.Player2 + 1;
+                    this.contadorPlayer2 = this.contadorPlayer2 + 1;
                 }
                 break;
         }
 
-        
-        console.log("Pulse una tecla para continuar...");
         // Console.ReadLine();
     }
 }
 
-//creo la partida pasándole los jugadores
+
+// var name = readline.question("What is your name?");
+
+// console.log("Fuck you " + name + ".");
+
+// creo la partida pasándole los jugadores
 let P = new partida();

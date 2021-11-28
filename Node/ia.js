@@ -1,4 +1,6 @@
 const player = require("./player.js");
+const readline = require('readline-sync');
+
 
 class ia extends player
 {
@@ -90,13 +92,13 @@ class ia extends player
         let selec = false;
         while (selec == false)
         {
-            var randomNumber4 = Array.from({length:1}, () => Math.floor(Math.random() * deck.length));
+            var randomNumber4 = Array.from({length:1}, () => Math.floor(Math.random() * this.deck.length));
             movi = randomNumber4[0];
 
-            if (deck[movi] != null && deck[movi].getTipo() == "guerrero")
+            if (this.deck[movi] != null && this.deck[movi].getTipo() == "guerrero")
             {
                 // agrego la carta a la lista
-                jugada.push(deck[movi]);
+                jugada.push(this.deck[movi]);
                 selec = true;
             }
         }
@@ -105,11 +107,11 @@ class ia extends player
         let mien = false;
         while (mien == false)
         {
-            let resp = Math.floor(Math.random() * (deck.length+1));
-            if (deck[resp].getTipo() != "guerrero") // si el randomico genera diferente de guerrero
+            let resp = Math.floor(Math.random() * (this.deck.length+1));
+            if (this.deck[resp].getTipo() != "guerrero") // si el randomico genera diferente de guerrero
             {
                 // Agregarla a la lista
-                jugada.push(deck[resp]);
+                jugada.push(this.deck[resp]);
                 mien = true;
             }
         }
@@ -119,7 +121,7 @@ class ia extends player
         // Borrar las cartas del deck
         let i = 0;
         jugada.forEach((card,i) => {
-            deck.remove(i, card);
+            this.deck.splice(i, card);
         });
 
     }

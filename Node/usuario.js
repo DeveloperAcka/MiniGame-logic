@@ -1,3 +1,4 @@
+const readline = require('readline-sync');
 const player = require("./player.js");
 
 class usuario extends player
@@ -9,8 +10,6 @@ class usuario extends player
         // console.log(cartasTotales.toString());
        this.id = player_id;
     }
-
-    
 
     // Crea el deck del jugador
     crearDeck(cartasTotales)
@@ -42,7 +41,7 @@ class usuario extends player
         console.log("2. Gana la carta con menor ataque");
         console.log("3. Gana la carta con mayor defensa");
         console.log("4. Gana la carta con menor defensa");
-        criterio = prompt;
+        criterio = readline.question("Ingrese su opción:");
 
         switch (criterio)
         {
@@ -79,35 +78,33 @@ class usuario extends player
         let sel = 0;
         while (selec == false)
         {
-            console.log("Escoja una carta de tipo guerrero, Ingrese el número");
-            imprimirDeck();
-            sel = prompt;
-            if (deck[sel] != null && deck[sel].getTipo() == "guerrero")
+            console.log("Escoja una carta de tipo guerrero");
+            this.imprimirDeck();
+            sel = readline.question("Ingrese el número");
+            if (this.deck[sel] != null && this.deck[sel].getTipo() == "guerrero")
             {
                 selec = true;
                 // Agrego a la lista de salida, la carta guerrero escogida
-                jugada.push(deck[sel]);
+                jugada.push(this.deck[sel]);
             }
             else
                 console.log("Escoja un numero de carta valido, asegúrese que sea un guerrero");
         }
 
         // Agregación de cartas de estrategia
-        console.log("\n\nDesea agregar una carga de estrategia? si/no");
-        let resp = prompt();
+        var resp = readline.question("\n\nDesea agregar una carga de estrategia? si/no");
 
-        while(resp == "si" && deck.lenght>0)
+        while(resp == "si" && this.deck.lenght>0)
         {
-            console.log("\n\nEscoja una carta de estrategia, Ingrese el número");
-            imprimirDeck();
-            sel = prompt();
-            if (deck[sel] != null && deck[sel].getTipo() != "guerrero")
+            console.log("\n\nEscoja una carta de estrategia");
+            this.imprimirDeck();
+            sel = readline.question("Ingrese el número");
+            if (this.deck[sel] != null && this.deck[sel].getTipo() != "guerrero")
             {
                 selec = true;
                 // Agrego a la lista de salida la carta escogida
-                jugada.push(deck[sel]);
-                console.log("\n\nDesea agregar otra carta? si/no");
-                resp = prompt();
+                jugada.push(this.deck[sel]);
+                resp = readline.question("\n\nDesea agregar otra carta? si/no");
             }
             else
                 console.log("Escoja un numero de carta valido, asegúrese que no sea un guerrero");
@@ -119,7 +116,7 @@ class usuario extends player
         //borrar las cartas del deck
         let i = 0;
         jugada.forEach((card, i) => {
-            deck.splice(i, card);
+            this.deck.splice(i, card);
         });
     }
 }
